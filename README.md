@@ -1,4 +1,4 @@
-## Bachelor of Arts in Computer Science - Project Portfolio
+## Bachelor of Arts in Computer Science - Project and Work Portfolio
 
 ### About This Portfolio
 This repository represents a curated collection of projects I developed during my Bachelor of Arts in Computer Science. Each project showcases a different aspect of my learning journey—from algorithm analysis and small game development to complex simulations and data modeling. My learning throughout this program was focused on the building of practical, interactive applications that demonstrate core principles of computer science.
