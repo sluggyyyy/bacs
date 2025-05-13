@@ -28,7 +28,6 @@ def binary_negative(l, x):
             
     return False
     
-
 # O(n)
 def mystery_search(l):
     i = 0

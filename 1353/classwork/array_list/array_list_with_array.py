@@ -1,5 +1,21 @@
 import time
 
+class ArrayListIterator:
+    def __init__(self, array_list):
+        self.array_list = array_list
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < self.array_list.size:
+            result = self.array_list.get(self.current)
+            self.current += 1
+            return result
+        else:
+            raise StopIteration
+
 class ArrayList:
     def __init__(self):
         self.size = 0
@@ -62,19 +78,24 @@ class ArrayList:
     def is_empty(self):
         return self.size == 0
     
+    def __iter__(self):
+        return ArrayListIterator(self)
+    
 class ArrayListArithmetic(ArrayList):
     def expand_array(self):
         new_array = self.array + ([None] * 1000)
         self.array = new_array
         self.capacity = len(self.array)
         
-print(f'n\t\telapsed time\t\truntime')
-num_trials = 10
-for n in (100000, 200000, 400000, 800000):
-    start = time.time()
-    for i in range(num_trials):
-        array_list = ArrayListArithmetic()
-        for j in range(n):
-            array_list.append(j)
-    stop = time.time()
-    print(f"{n}\t\t{stop - start}\t{(stop - start)/num_trials}")
+if __name__ == "__main__":
+    arr = ArrayList()
+    for i in range(1, 101):
+        arr.append(i)
+
+    total = 0
+    for value in arr:
+        total += value
+
+    expected_result = (100 * 101) // 2
+    print("Expected Result:", expected_result)
+    print("Result == Expected:", total == expected_result)
