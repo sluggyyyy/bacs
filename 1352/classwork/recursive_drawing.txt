@@ -1,0 +1,3 @@
+base case: when the region of triangle is small enough, just draw a triangle
+recursive relationship:
+    for drawing big triangle, draw 3 smaller sierpinskis

@@ -1,0 +1,14 @@
+2. It takes 0.104s to add 500 elements to a doubly linked list, 200 times
+3. No, 21.615 is the amount of time it took to add 10,000 elements to the list,
+    2000 times over
+4. Stay the same because the code is averaging time per call with (t2-t1)/num_trials
+5. Divide new time by old time, raise it to the power of the O notation, multiply 
+    total previous time by that value
+6. O(n^2) because when the value doubles, the time quadruples
+
+--------------------------------------------------------------------------------
+
+If time stays constant as n grows -> O(1)
+If time doubles when n doubles -> O(n)
+If time quadruples when n doubles -> O(n^2)
+If time octuples when n doubles -> O(n^3)

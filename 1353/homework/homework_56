@@ -1,0 +1,20 @@
+def is_balanced(string):
+    stack = []
+    opening = {'(': ')', '[': ']', '{': '}'}
+    closing = {')', ']', '}'}
+
+    for char in string:
+        if char in opening:
+            stack.append(char)
+        elif char in closing:
+            if not stack or opening[stack.pop()] != char:
+                return False
+    return len(stack) == 0
+
+if __name__ == '__main__':
+    print(is_balanced('({}){}{[()()](())}'))
+    print(is_balanced('("I know", she said (though she said it uncertainly))'))
+    print(is_balanced('x*{3+5*[2+4(x-2)]-6}'))
+    print(is_balanced('{(})'))
+    print(is_balanced(")What? (I don't know)"))
+    print(is_balanced('{x+3](2-x]+4}'))
