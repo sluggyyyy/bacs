@@ -7,4 +7,5 @@ with open("1353/labs/lab_12/Dictionary.txt", "r") as file:
         word = line.strip()
         anagrammap.put_anagram(word)
 
-anagrammap.print_anagrams("silent")
+print(anagrammap.find_largest_anagram_group())
+anagrammap.print_anagrams('weakliness')

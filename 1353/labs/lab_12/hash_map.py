@@ -1,6 +1,7 @@
 from random import randint, random, choice
 import numpy as np
 from dll import DoublyLinkedList
+from collections import Counter
 
 class Item:
     def __init__(self,k,v):
@@ -35,15 +36,26 @@ class HashMap:
     def _hash_and_compress(self,k):
         #Hash function -> gives index
         return (hash(k) * self.a + self.b) % self.prime % len(self.the_table)
+
+    def find_largest_anagram_group(hash_map):
+        max_anagrams = 0
+        largest_anagram_word = None
+
+        # Loop through all buckets
+        for bucket in hash_map.the_table:
+            if bucket.size > max_anagrams:
+                max_anagrams = bucket.size
+                # The first element in the bucket represents the word
+                largest_anagram_word = bucket.header.next.data.value if bucket.header.next.data else None
+        
+        return largest_anagram_word, max_anagrams
     
     def _string_hash(self, key):
         key = key.upper()
-        sorted_key = ''.join(sorted(key))
-        char_sum = 0
-        for char in sorted_key:
-            char_sum += ord(char)
-            
-        return char_sum % len(self.the_table)
+        counter = Counter(key)
+        # Create a sorted tuple of (character, count) to guarantee order
+        sorted_counter = tuple(sorted(counter.items()))
+        return hash(sorted_counter) % len(self.the_table)
     
     def put_anagram(self, word):
         index = self._string_hash(word)
