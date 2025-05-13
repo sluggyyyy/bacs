@@ -1,6 +1,7 @@
 from random import random
 import dudraw
 from morgan_singly_linked_list import SinglyLinkedList
+import matplotlib.pyplot as plt
 
 class Stack:
     def __init__(self):
@@ -209,10 +210,30 @@ class FireProbability:
                 high_density = density
                 
         return density
+    
+    def graph():
+        density = [i / 100 for i in range(101)]
+        dfs_probabilities = []
+        for d in density:
+            dfs_probabilities.append(FireProbability.probability_of_fire_spread_dfs(d))
+        
+        bfs_probabilities = []
+        for d in density:
+            bfs_probabilities.append(FireProbability.probability_of_fire_spread_bfs(d))
+        
+        fig, ax = plt.subplots()
+        ax.plot(density, dfs_probabilities, label="dfs")
+        ax.plot(density, bfs_probabilities, label="bfs")
+        ax.set_xlabel("density")
+        ax.set_ylabel("prob")
+        ax.legend()
+        ax.grid(True)
+        plt.show()
                     
 def main():
     print(FireProbability.highest_density_dfs())
     print(FireProbability.highest_density_bfs())
+    FireProbability.graph()
     
 if __name__ == "__main__":
     main()
