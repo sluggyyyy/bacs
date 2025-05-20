@@ -1,0 +1,15 @@
+from binary_tree import BinaryTree
+
+tree = BinaryTree()
+one = tree.add_root(1)
+two = tree.add_left_child(one, 2)
+three = tree.add_right_child(one, 3)
+four = tree.add_left_child(two, 4)
+tree.add_right_child(two, 5)
+tree.add_left_child(four, 7)
+tree.add_right_child(four, 8)
+six = tree.add_left_child(three, 6)
+tree.add_left_child(six,9)
+tree.add_right_child(six,  10)
+print(tree.tree_height())
+tree.print_tree()
