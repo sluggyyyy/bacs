@@ -68,7 +68,7 @@ def hangman(word) -> bool:
         
         if print_answer == list(word):
             print("\nCongratulations. You guessed the word correctly!")
-            print(print_answer)
+            print(f'The word was: {"".join(print_answer)}!')
             return False
         
     return False
