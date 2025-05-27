@@ -31,6 +31,19 @@ class TreeNode:
                 right_height = self.right_child.node_height()
             return max(left_height, right_height) + 1
     
+    def node_depth(self):
+        depth = 0
+        current = self
+        while current.parent is not None:
+            depth += 1
+            current = current.parent
+        return depth
+    
+    def node_depth_rec(self):
+        if self.parent is None:
+            return 0
+        return 1 + self.parent.node_depth()
+
 class BinaryTree:
 
     def __init__(self):
@@ -42,7 +55,7 @@ class BinaryTree:
     
     def is_empty(self):
         return self.root is None
-    
+
     def tree_height(self):
         return self.root.node_height()
     
