@@ -1,5 +1,4 @@
 import random
-import string
 
 #Load the dictionary from file and organize it by word length
 def load_dictionary():
