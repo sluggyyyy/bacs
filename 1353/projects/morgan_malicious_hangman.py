@@ -65,6 +65,43 @@ def get_largest_word_family(words, guess, current_display):
 
     return max_pattern, max_words
 
+def hangman(word, remaining_guesses, guessed_letters, current_display):
+    print("\nNormal Hangman begins. One word remains.")
+    
+    while "_" in current_display and remaining_guesses > 0:
+        print("\n" + " ".join(current_display))
+        print(f"Incorrect guesses remaining:  {remaining_guesses}")
+
+        guess = input("Guess a letter: ").lower()
+
+        if not guess.isalpha() or len(guess) != 1:
+            print("Please enter a valid single letter.")
+            continue
+
+        if guess in guessed_letters:
+            print("You already guessed that letter.")
+            continue
+
+        guessed_letters.add(guess)
+
+        if guess in word:
+            for i in range(len(word)):
+                if word[i] == guess:
+                    current_display[i] = guess
+            print("Correct!")
+        else:
+            remaining_guesses -= 1
+            print("Incorrect!")
+
+    if "_" not in current_display:
+        print("\nCongratulations! You guessed the word correctly!")
+    else:
+        print("\nGame over. You ran out of guesses.")
+
+    print(f"The word was: {word}")
+    play_again()
+    return False
+
 def hangman(possible_words, max_incorrect_guesses) -> bool:
     guessed_letters = set()
     print_answer = ["_"] * len(next(iter(possible_words)))
@@ -95,8 +132,8 @@ def hangman(possible_words, max_incorrect_guesses) -> bool:
         
         possible_words = new_word_set
         if len(possible_words) == 1:
-            final_word = next(iter(possible_words))
             print("Only one word left. You're now playing normal hangman!")
+            return hangman(next(iter(possible_words)), max_incorrect_guesses - incorrect_guesses, guessed_letters, print_answer)
             
     if "_" not in print_answer:
         print("\nCongratulations! You guessed the word correctly!")
